@@ -99,7 +99,26 @@ class ActionFix(pyblish.api.Action):
                 instance = result["instance"]
                 data.extend(instance)
 
-        func = plugin._func[0]
-        for mesh_name in data:
+        # to select a incorrect vert, we need the mesh, and the vert index
+
+        # func = plugin._func[0]
+        for data_entry in data:
+
             # we might have mesh, or indices
-            func(mesh_name, fix=True)
+            if isinstance(data_entry, bpy.types.Mesh):
+                # select mesh
+                pass
+
+            elif isinstance(data_entry, int):
+                index = data_entry
+                # select indices
+                # check if vert, face or edge indices
+                if 'verts' in plugin.families:
+                    select_vert(bmesh_input, index)
+
+                elif 'edges' in plugin.families:
+                    select_edge(bmesh_input, index)
+
+                elif 'faces' in plugin.families:
+                    select_face(bmesh_input, index)
+
