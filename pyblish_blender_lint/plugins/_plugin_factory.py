@@ -1,6 +1,6 @@
 import pyblish.api
 import bmesh
-
+from pyblish_blender_lint.plugins.action_select import ActionSelect
 FAMILIES = ['mesh']
 
 
@@ -11,7 +11,7 @@ def create_validator(func, data, convert_instance_to_bmesh=False, **kwargs):
         optional = False
         hosts = ["blender"]
         families = FAMILIES
-        # actions = [ActionSelect]
+        actions = [ActionSelect]
         _func = [func]  # we can't store func directly or it will pass self when running self.func()
 
         def process(self, instance, context):
