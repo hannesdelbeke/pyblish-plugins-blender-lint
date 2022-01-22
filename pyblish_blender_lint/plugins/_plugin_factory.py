@@ -1,9 +1,10 @@
 import pyblish.api
+import bmesh
 
 FAMILIES = ['mesh']
 
 
-def create_validator(func, data, **kwargs):
+def create_validator(func, data, convert_instance_to_bmesh=False, **kwargs):
     class ValidationPlugin(pyblish.api.Validator):
         label = data.get('label', None)
         __doc__ = data.get('definition', 'missing documentation')
@@ -18,6 +19,11 @@ def create_validator(func, data, **kwargs):
             for mesh in meshes:
                 print("test ==============")
                 try:
+
+                    if convert_instance_to_bmesh:
+                        bmesh_instance = bmesh.from_edit_mesh(mesh.data)
+                        mesh = bmesh_instance
+
                     func = self._func[0]
                     errors = func(mesh, **kwargs)
                 except Exception as ex:

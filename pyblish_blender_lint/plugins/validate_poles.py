@@ -20,5 +20,5 @@ def check_poles(blender_mesh, count=6):
     return indices
 
 
-plugin = create_validator(check_poles, data)
+plugin = create_validator(check_poles, data, convert_instance_to_bmesh=True)
 plugin.families.append('verts')

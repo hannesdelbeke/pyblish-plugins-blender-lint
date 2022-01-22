@@ -34,10 +34,10 @@ def check_nonmanifold_edges(blender_mesh):
     return check_nonmanifold_elements(blender_mesh)['edges']
 
 
-plugin = create_validator(check_nonmanifold_verts, data)
+plugin = create_validator(check_nonmanifold_verts, data, convert_instance_to_bmesh=True)
 plugin.label = 'nonmanifold verts'
 plugin.families.append('verts')
 
-plugin2 = create_validator(check_nonmanifold_edges, data)
+plugin2 = create_validator(check_nonmanifold_edges, data, convert_instance_to_bmesh=True)
 plugin2.label = 'nonmanifold edges'
 plugin2.families.append('edges')

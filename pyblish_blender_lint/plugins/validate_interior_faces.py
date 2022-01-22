@@ -20,5 +20,5 @@ def check_interior_faces(blender_mesh):  # translated from editmesh_select.c
     return face_indices
 
 
-plugin = create_validator(check_interior_faces, data)
+plugin = create_validator(check_interior_faces, data, convert_instance_to_bmesh=True)
 plugin.families.append('faces')

@@ -11,13 +11,13 @@ data = {
 }
 
 
-def check_ngons(self):
+def check_ngons(blender_mesh):
     face_indices = []
-    for f in self.b.faces:
+    for f in blender_mesh.faces:
         if 4 < len(f.verts):
             face_indices.append(f.index)
     return face_indices
 
 
-plugin = create_validator(check_ngons, data)
+plugin = create_validator(check_ngons, data, convert_instance_to_bmesh=True)
 plugin.families.append('faces')

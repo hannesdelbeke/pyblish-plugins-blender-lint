@@ -44,7 +44,7 @@ class CollectSelectedMesh(pyblish.api.Collector):
         # ensure_edit_mode()  # a collector that toggles edit mode, dangerous. collector shouldnt change scene
         assert is_edit_mode, "not in edit mode, can't collect"
 
-        blender_mesh = bmesh.from_edit_mesh(obj.data)
+        # blender_mesh = bmesh.from_edit_mesh(obj.data)
         instance = context.create_instance(obj.data.name, icon="cubes",
                                            families=FAMILIES)  # parent=instance_meshes.parent)
-        instance.append(blender_mesh)
+        instance.append(obj)

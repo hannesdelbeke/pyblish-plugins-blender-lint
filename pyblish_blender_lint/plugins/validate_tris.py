@@ -14,15 +14,12 @@ data = {
 
 
 def check_tris(blender_mesh):
-    # bad = {'faces': []}
     face_indices = []
     for f in blender_mesh.faces:
         if 3 == len(f.verts):
-            # bad['faces'].append(f.index)
             face_indices.append(f.index)
-    # return bad
     return face_indices
 
 
-plugin = create_validator(check_tris, data)
+plugin = create_validator(check_tris, data, convert_instance_to_bmesh=True)
 plugin.families.append('faces')

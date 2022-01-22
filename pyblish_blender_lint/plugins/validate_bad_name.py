@@ -41,8 +41,12 @@ def is_bad_name(name):
         'Torus',
     ]
     pat = '(%s)\.?\d*$' % '|'.join(default_names)
-    assert not re.match(pat, name)
+    assert not re.match(pat, name), '%s is a bad name' % name
 
 
-plugin = create_validator(is_bad_name, data)
+def is_bad_name_helper(blender_mesh):
+    return is_bad_name(blender_mesh.name)
+
+
+plugin = create_validator(is_bad_name_helper, data)
 plugin.families.append('name')
