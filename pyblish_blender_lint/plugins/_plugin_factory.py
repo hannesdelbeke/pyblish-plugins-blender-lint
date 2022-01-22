@@ -17,7 +17,6 @@ def create_validator(func, data, convert_instance_to_bmesh=False, **kwargs):
         def process(self, instance, context):
             meshes = instance[:]
             for mesh in meshes:
-                print("test ==============")
                 try:
 
                     if convert_instance_to_bmesh:
@@ -27,17 +26,10 @@ def create_validator(func, data, convert_instance_to_bmesh=False, **kwargs):
                     func = self._func[0]
                     errors = func(mesh, **kwargs)
                 except Exception as ex:
-                    print("start ==============")
-                    print(ex)
-                    print("end ==============")
                     errors = [mesh]
 
                 context.data[self.label] = errors  # save failed results for reuse later
                 assert not errors, 'check failed on:' + str(errors)
-    # print("test ==============")
-    # print(func)
-    # print(dir(func))
-    # print(func.__name__)
     ValidationPlugin.__name__ = 'validate_' + func.__name__
 
     return ValidationPlugin
