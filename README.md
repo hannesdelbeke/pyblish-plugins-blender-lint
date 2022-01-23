@@ -1,5 +1,10 @@
 # pyblish-blender-lint
-sample pyblish validators for blender, based on functions from https://github.com/ryanjosephking/meshlint by ryanjosephking
+a collection of pyblish plugins for blender
+
+collectors:
+- collect selected mesh
+
+validators, based on functions from https://github.com/ryanjosephking/meshlint by ryanjosephking:
 - bad name
 - interior faces
 - ngons
